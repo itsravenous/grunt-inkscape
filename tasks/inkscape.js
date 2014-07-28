@@ -15,6 +15,7 @@ module.exports = function(grunt) {
 		var options = this.options({
 			density: null,
 			backgroundOpacity: null,
+			addPNGSuffix: true,
 		});
 
 		var args = [];
@@ -35,7 +36,8 @@ module.exports = function(grunt) {
 			}
 
 			var argsb = args;
-			argsb.push('-f', el.src[0], '-e', el.dest);
+			var out = (options.addPNGSuffix) ?  el.dest + '.png' : el.dest;
+			argsb.push('-f', el.src[0], '-e', out);
 
 			var spawn = grunt.util.spawn({
 				cmd: 'inkscape',
